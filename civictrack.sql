@@ -15,9 +15,8 @@ CREATE TABLE Users (
 CREATE TABLE Complaints (
     complaint_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
-    description TEXT NOT NULL,
-    address TEXT,
-    landmark TEXT,
+    problem_description TEXT NOT NULL,
+    address_landmark TEXT,
     status VARCHAR(20) NOT NULL DEFAULT 'Active', -- values: Active, Resolved
     submitted_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP DEFAULT NOW(),
