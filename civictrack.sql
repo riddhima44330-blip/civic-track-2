@@ -20,7 +20,8 @@ CREATE TABLE Complaints (
     status VARCHAR(20) NOT NULL DEFAULT 'Active', -- values: Active, Resolved
     submitted_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP DEFAULT NOW(),
-    resolved_at TIMESTAMP
+    resolved_at TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
 CREATE TABLE ComplaintImages (
@@ -28,13 +29,15 @@ CREATE TABLE ComplaintImages (
     complaint_id INT NOT NULL,
     image LONGBLOB NOT NULL,
     caption VARCHAR(255),
-    uploaded_at TIMESTAMP DEFAULT NOW()
+    uploaded_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY (complaint_id) REFERENCES Complaints(complaint_id)
 );
 
 CREATE TABLE Locations (
     location_id SERIAL PRIMARY KEY,
     complaint_id INT NOT NULL,
     location VARCHAR(255), -- stores "latitude,longitude"
-    address_landmark TEXT
+    address_landmark TEXT,
+    FOREIGN KEY (complaint_id) REFERENCES Complaints(complaint_id)
 );
 
