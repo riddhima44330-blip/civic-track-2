@@ -26,7 +26,7 @@ CREATE TABLE Complaints (
 CREATE TABLE ComplaintImages (
     image_id SERIAL PRIMARY KEY,
     complaint_id INT NOT NULL,
-    image_url TEXT NOT NULL,
+    image LONGBLOB NOT NULL,
     caption VARCHAR(255),
     uploaded_at TIMESTAMP DEFAULT NOW()
 );
@@ -34,8 +34,7 @@ CREATE TABLE ComplaintImages (
 CREATE TABLE Locations (
     location_id SERIAL PRIMARY KEY,
     complaint_id INT NOT NULL,
-    latitude DECIMAL(9,6),
-    longitude DECIMAL(9,6),
-    address TEXT
+    location VARCHAR(255), -- stores "latitude,longitude"
+    address_landmark TEXT
 );
 
